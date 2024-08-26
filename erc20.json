@@ -1,0 +1,10 @@
+{
+    "tokens": [
+        {
+            "name": "",
+            "existingToken": "0xYourExisting Token Address",
+            "adapterAddress": "0x OFT Adapter Address",
+            "oftAddress": "Ruby/TC oft token address"
+        }
+    ]
+}
