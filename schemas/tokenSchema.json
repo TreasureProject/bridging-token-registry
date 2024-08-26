@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Treasure Bridging Registry",
+  "type": "object",
+  "properties": {
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "srcChainId": { "type": "integer" },
+          "destChainId": { "type": "integer" },
+          "srcTokenAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "destTokenAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "isNft": { "type": "boolean" },
+          "isCollateral": { "type": "boolean" },
+          "nftStandard": {
+            "type": "string",
+            "enum": ["ERC721", "ERC1155"]
+          },
+          "underlyingTokenAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "nftBatchSignature": { "type": "string" }
+        },
+        "required": [
+          "name",
+          "srcChainId",
+          "destChainId",
+          "srcTokenAddress",
+          "destTokenAddress",
+          "isNft",
+          "isCollateral"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": { "isNft": { "const": true } }
+            },
+            "then": {
+              "required": ["nftStandard", "nftBatchSignature"]
+            }
+          },
+          {
+            "if": {
+              "properties": { "isCollateral": { "const": true } }
+            },
+            "then": {
+              "required": ["underlyingTokenAddress"]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
