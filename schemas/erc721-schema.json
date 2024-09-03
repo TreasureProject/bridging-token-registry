@@ -1,0 +1,42 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://your-domain.com/schemas/token_schema.json",
+    "title": "Treasure ERC721 Bridging Registry",
+    "type": "object",
+    "properties": {
+        "tokens": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "existingToken": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "adapterAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "oftAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "batchTransferEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "name",
+                    "existingToken",
+                    "adapterAddress",
+                    "oftAddress",
+                    "batchTransferEnabled"
+                ]
+            }
+        }
+    },
+    "required": ["tokens"]
+}
