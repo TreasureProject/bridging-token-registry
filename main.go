@@ -2,11 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/santhosh-tekuri/jsonschema/v6"
 )
+
+type vaildationError struct {
+	tokenType TokenType
+	err       error
+}
 
 type schemaType struct {
 	schemaLocation   string
@@ -23,6 +27,7 @@ const (
 )
 
 func main() {
+	var errors []vaildationError
 	comp := jsonschema.NewCompiler()
 
 	schemaMap := map[TokenType]*schemaType{
@@ -49,41 +54,75 @@ func main() {
 	for token, schema := range schemaMap {
 
 		if _, err := os.Stat(schema.schemaLocation); os.IsNotExist(err) {
-			log.Fatal("could not find all schemas")
+			errors = append(errors, vaildationError{
+				tokenType: token,
+				err:       err,
+			})
+			continue
 		}
 
 		fmt.Println("got all schemas")
 
 		sch, err := comp.Compile(schema.schemaLocation)
 		if err != nil {
-			log.Fatalf("could not compile schema for %s", token)
+			errors = append(errors, vaildationError{
+				tokenType: token,
+				err:       err,
+			})
+			continue
 		}
 
 		schemaMap[token].compiledSchema = sch
 
 		for _, fileLocation := range schema.dataFileLocation {
 			if _, err := os.Stat(fileLocation); os.IsNotExist(err) {
-				log.Fatalf("cannot open data file for type %s", token)
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+				})
+				continue
 			}
 
 			file, err := os.Open(fileLocation)
 			if err != nil {
-				log.Fatal("could not open data file")
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+				})
+				continue
 			}
 			defer file.Close()
 
 			inst, err := jsonschema.UnmarshalJSON(file)
 			if err != nil {
-				log.Fatal("could not unmarshall json")
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+				})
 			}
 
-			schemaErr := schema.compiledSchema.Validate(inst)
-			if schemaErr != nil {
-				log.Fatal(schemaErr)
+			err = schema.compiledSchema.Validate(inst)
+			if err != nil {
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+				})
+				continue
 			}
 
 		}
 
 	}
+
+	if len(errors) > 0 {
+		fmt.Println("vaildation errors occured")
+		for _, err := range errors {
+			fmt.Println(err.err.Error())
+		}
+
+		os.Exit(1)
+	}
+
+	fmt.Println("validation successful")
 
 }
