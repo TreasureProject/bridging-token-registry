@@ -99,6 +99,7 @@ func main() {
 					tokenType: token,
 					err:       err,
 				})
+				continue
 			}
 
 			err = schema.compiledSchema.Validate(inst)
