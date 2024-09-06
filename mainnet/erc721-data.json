@@ -2,38 +2,11 @@
     "tokens": [
         {
             "name": "Magic Sword",
-            "existingToken": "0x1234567890abcdef1234567890abcdef12345678",
-            "adapterAddress": "0x9876543210fedcba9876543210fedcba98765432",
-            "oftAddress": "0x5555aaaa5555ffff5555aaaa5555ffff5555aaaa",
+            "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+            "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+            "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
             "batchTransferEnabled": true
-        },
-        {
-            "name": "Golden Shield",
-            "existingToken": "0xabcdeffedcba09876543210fedcba0987654321",
-            "adapterAddress": "0x1111222233334444555566667777888899990000",
-            "oftAddress": "0x0000111122223333444455556666777788889999",
-            "batchTransferEnabled": false
-        },
-        {
-            "name": "Mystic Orb",
-            "existingToken": "0x0987654321fedcba9876543210fedcba98765432",
-            "adapterAddress": "0x44443333222211110000fffeeefdddcbbba999888",
-            "oftAddress": "0x88889999aaaaeeeec0c0d0d0e0e0f0f000001111",
-            "batchTransferEnabled": true
-        },
-        {
-            "name": "Eternal Flame",
-            "existingToken": "0x567890abcdef1234567890abcdef1234567890",
-            "adapterAddress": "0x777788889999aaaa000011112222333344445555",
-            "oftAddress": "0x9999888877776666555544443333222211110000",
-            "batchTransferEnabled": true
-        },
-        {
-            "name": "Crystal Staff",
-            "existingToken": "0x1111222233334444555566667777888899990000",
-            "adapterAddress": "0x3210fedcba9876543210fedcba9876543210fedc",
-            "oftAddress": "0x0000000000000000000000000000000000000000",
-            "batchTransferEnabled": false
         }
+        
     ]
 }

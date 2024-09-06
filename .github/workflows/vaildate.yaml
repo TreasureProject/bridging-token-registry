@@ -1,0 +1,30 @@
+name: Go Test with Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: golang:1.23-alpine 
+      options: --user root 
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run main.go
+      run: |
+        go run main.go
+      env:
+        GOOS: linux
+        GOARCH: amd64
+
+    - name: Test
+      run: go test -v ./...

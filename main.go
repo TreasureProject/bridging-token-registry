@@ -10,6 +10,7 @@ import (
 type vaildationError struct {
 	tokenType TokenType
 	err       error
+	file      string
 }
 
 type schemaType struct {
@@ -61,8 +62,6 @@ func main() {
 			continue
 		}
 
-		fmt.Println("got all schemas")
-
 		sch, err := comp.Compile(schema.schemaLocation)
 		if err != nil {
 			errors = append(errors, vaildationError{
@@ -79,6 +78,7 @@ func main() {
 				errors = append(errors, vaildationError{
 					tokenType: token,
 					err:       err,
+					file:      fileLocation,
 				})
 				continue
 			}
@@ -88,25 +88,29 @@ func main() {
 				errors = append(errors, vaildationError{
 					tokenType: token,
 					err:       err,
+					file:      fileLocation,
 				})
 				continue
 			}
-			defer file.Close()
 
 			inst, err := jsonschema.UnmarshalJSON(file)
 			if err != nil {
 				errors = append(errors, vaildationError{
 					tokenType: token,
 					err:       err,
+					file:      fileLocation,
 				})
 				continue
 			}
+
+			file.Close()
 
 			err = schema.compiledSchema.Validate(inst)
 			if err != nil {
 				errors = append(errors, vaildationError{
 					tokenType: token,
 					err:       err,
+					file:      fileLocation,
 				})
 				continue
 			}
@@ -118,7 +122,7 @@ func main() {
 	if len(errors) > 0 {
 		fmt.Println("vaildation errors occured")
 		for _, err := range errors {
-			fmt.Println(err.err.Error())
+			fmt.Println(fmt.Sprintf("%s: %s in file %s", err.tokenType, err.err.Error(), err.file))
 		}
 
 		os.Exit(1)
