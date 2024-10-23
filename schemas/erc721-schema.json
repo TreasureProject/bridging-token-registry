@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "https://your-domain.com/schemas/token_schema.json",
+    "$id": "https://github.com/TreasureProject/bridging-token-registry/blob/main/schemas/erc721-schema.json",
     "title": "Treasure ERC721 Bridging Registry",
     "type": "object",
     "properties": {
@@ -38,5 +38,7 @@
             }
         }
     },
-    "required": ["tokens"]
+    "required": [
+        "tokens"
+    ]
 }
