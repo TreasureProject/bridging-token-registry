@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "https://your-domain.com/schemas/token_schema20.json",
+    "$id": "https://github.com/TreasureProject/bridging-token-registry/blob/main/schemas/erc20-schema.json",
     "title": "Treasure ERC20 Bridging Registry",
     "type": "object",
     "properties": {
@@ -25,9 +25,16 @@
                         "pattern": "^0x[a-fA-F0-9]{40}$"
                     }
                 },
-                "required": ["name", "existingToken", "adapterAddress", "oftAddress"]
+                "required": [
+                    "name",
+                    "existingToken",
+                    "adapterAddress",
+                    "oftAddress"
+                ]
             }
         }
     },
-    "required": ["tokens"]
+    "required": [
+        "tokens"
+    ]
 }
