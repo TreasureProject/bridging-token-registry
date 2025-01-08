@@ -1,10 +1,23 @@
 {
-    "tokens": [
-        {
-            "name": "ArcaneAmber",
-            "existingToken": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
-            "adapterAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
-            "oftAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
-        }
-    ]
+  "tokens": [
+    {
+      "name": "Super Gold",
+      "srcChainId": 5,
+      "destChainId": 80001,
+      "srcTokenAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+      "destTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "isNft": false,
+      "isCollateral": true,
+      "underlyingTokenAddress": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+    },
+    {
+      "name": "Mystic Gems",
+      "srcChainId": 80001,
+      "destChainId": 421613,
+      "srcTokenAddress": "0xE11BA2b4D45Eaed5996cd0824791E0C93114882d",
+      "destTokenAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "isNft": false,
+      "isCollateral": false
+    }
+  ]
 }

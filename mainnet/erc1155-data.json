@@ -1,26 +1,27 @@
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "tokens": [
     {
-      "name": "Magic Crystal",
-      "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
-      "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
-      "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
-      "batchTransferEnabled": true
+      "name": "Magic Items",
+      "srcChainId": 5,
+      "destChainId": 420,
+      "srcTokenAddress": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "destTokenAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+      "isNft": true,
+      "nftStandard": "ERC1155",
+      "isCollateral": true,
+      "underlyingTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
     },
     {
-      "name": "Ethereal Blade",
-      "existingToken": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-      "adapterAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
-      "oftAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
-      "batchTransferEnabled": false
-    },
-    {
-      "name": "Quantum Shard",
-      "existingToken": "0xE11BA2b4D45Eaed5996cd0824791E0C93114882d",
-      "adapterAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
-      "oftAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
-      "batchTransferEnabled": true
+      "name": "Battle Equipment",
+      "srcChainId": 80001,
+      "destChainId": 421613,
+      "srcTokenAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "destTokenAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+      "isNft": true,
+      "nftStandard": "ERC1155",
+      "isCollateral": false,
+      "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
     }
   ]
 }

@@ -7,16 +7,10 @@ import (
 	"github.com/santhosh-tekuri/jsonschema/v6"
 )
 
-type vaildationError struct {
+type validationError struct {
 	tokenType TokenType
 	err       error
 	file      string
-}
-
-type schemaType struct {
-	schemaLocation   string
-	dataFileLocation [2]string
-	compiledSchema   *jsonschema.Schema
 }
 
 type TokenType string
@@ -28,55 +22,46 @@ const (
 )
 
 func main() {
-	var errors []vaildationError
+	var errors []validationError
 	comp := jsonschema.NewCompiler()
 
-	schemaMap := map[TokenType]*schemaType{
+	// Single schema for all token types
+	schemaLocation := "schemas/tokenSchema.json"
+
+	// Data file locations by token type
+	dataFiles := map[TokenType][2]string{
 		ERC20: {
-			schemaLocation:   "schemas/erc20-schema.json",
-			dataFileLocation: [2]string{"testnet/erc20-data.json", "mainnet/erc20-data.json"},
+			"testnet/erc20-data.json",
+			"mainnet/erc20-data.json",
 		},
 		ERC721: {
-			schemaLocation: "schemas/erc721-schema.json",
-			dataFileLocation: [2]string{
-				"testnet/erc721-data.json",
-				"mainnet/erc721-data.json",
-			},
+			"testnet/erc721-data.json",
+			"mainnet/erc721-data.json",
 		},
 		ERC1155: {
-			schemaLocation: "schemas/erc1155-schema.json",
-			dataFileLocation: [2]string{
-				"testnet/erc1155-data.json",
-				"mainnet/erc1155-data.json",
-			},
+			"testnet/erc1155-data.json",
+			"mainnet/erc1155-data.json",
 		},
 	}
 
-	for token, schema := range schemaMap {
+	// Compile the single schema
+	if _, err := os.Stat(schemaLocation); os.IsNotExist(err) {
+		fmt.Printf("Schema file not found: %s\n", err)
+		os.Exit(1)
+	}
 
-		if _, err := os.Stat(schema.schemaLocation); os.IsNotExist(err) {
-			errors = append(errors, vaildationError{
-				tokenType: token,
-				err:       err,
-			})
-			continue
-		}
+	schema, err := comp.Compile(schemaLocation)
+	if err != nil {
+		fmt.Printf("Schema compilation error: %s\n", err)
+		os.Exit(1)
+	}
 
-		sch, err := comp.Compile(schema.schemaLocation)
-		if err != nil {
-			errors = append(errors, vaildationError{
-				tokenType: token,
-				err:       err,
-			})
-			continue
-		}
-
-		schemaMap[token].compiledSchema = sch
-
-		for _, fileLocation := range schema.dataFileLocation {
+	// Validate each data file against the schema
+	for tokenType, locations := range dataFiles {
+		for _, fileLocation := range locations {
 			if _, err := os.Stat(fileLocation); os.IsNotExist(err) {
-				errors = append(errors, vaildationError{
-					tokenType: token,
+				errors = append(errors, validationError{
+					tokenType: tokenType,
 					err:       err,
 					file:      fileLocation,
 				})
@@ -85,8 +70,8 @@ func main() {
 
 			file, err := os.Open(fileLocation)
 			if err != nil {
-				errors = append(errors, vaildationError{
-					tokenType: token,
+				errors = append(errors, validationError{
+					tokenType: tokenType,
 					err:       err,
 					file:      fileLocation,
 				})
@@ -95,39 +80,35 @@ func main() {
 
 			inst, err := jsonschema.UnmarshalJSON(file)
 			if err != nil {
-				errors = append(errors, vaildationError{
-					tokenType: token,
+				errors = append(errors, validationError{
+					tokenType: tokenType,
 					err:       err,
 					file:      fileLocation,
 				})
+				file.Close()
 				continue
 			}
 
 			file.Close()
 
-			err = schema.compiledSchema.Validate(inst)
+			err = schema.Validate(inst)
 			if err != nil {
-				errors = append(errors, vaildationError{
-					tokenType: token,
+				errors = append(errors, validationError{
+					tokenType: tokenType,
 					err:       err,
 					file:      fileLocation,
 				})
-				continue
 			}
-
 		}
-
 	}
 
 	if len(errors) > 0 {
-		fmt.Println("vaildation errors occured")
+		fmt.Println("Validation errors occurred:")
 		for _, err := range errors {
-			fmt.Println(fmt.Sprintf("%s: %s in file %s", err.tokenType, err.err.Error(), err.file))
+			fmt.Printf("%s: %s in file %s\n", err.tokenType, err.err.Error(), err.file)
 		}
-
 		os.Exit(1)
 	}
 
-	fmt.Println("validation successful")
-
+	fmt.Println("All token configurations validated successfully")
 }

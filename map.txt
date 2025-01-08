@@ -1,0 +1,541 @@
+Project Path: bridging-token-registry
+
+Source Tree:
+
+```
+bridging-token-registry
+├── go.mod
+├── testnet
+│   ├── erc20-data.json
+│   ├── erc1155-data.json
+│   └── erc721-data.json
+├── go.sum
+├── schemas
+│   ├── erc1155-schema.json
+│   ├── erc721-schema.json
+│   ├── tokenSchema.json
+│   └── erc20-schema.json
+├── README.md
+├── mainnet
+│   ├── erc20-data.json
+│   ├── erc1155-data.json
+│   └── erc721-data.json
+└── main.go
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/go.mod`:
+
+```mod
+module github.com/TreasureProject/bridging-token-registry
+
+go 1.22.1
+
+require (
+	github.com/santhosh-tekuri/jsonschema/v6 v6.0.1 // indirect
+	golang.org/x/text v0.14.0 // indirect
+)
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/testnet/erc20-data.json`:
+
+```json
+{
+    "tokens": [
+        {
+            "name": "ArcaneAmber",
+            "existingToken": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+            "adapterAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+            "oftAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+        }
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/testnet/erc1155-data.json`:
+
+```json
+{
+  "tokens": [
+    {
+      "name": "Magic Crystal",
+      "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+      "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
+      "batchTransferEnabled": true
+    },
+    {
+      "name": "Ethereal Blade",
+      "existingToken": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "adapterAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "oftAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+      "batchTransferEnabled": false
+    },
+    {
+      "name": "Quantum Shard",
+      "existingToken": "0xE11BA2b4D45Eaed5996cd0824791E0C93114882d",
+      "adapterAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "oftAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+      "batchTransferEnabled": true
+    }
+  ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/testnet/erc721-data.json`:
+
+```json
+{
+    "tokens": [
+        {
+            "name": "Magic Sword",
+            "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+            "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+            "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
+            "batchTransferEnabled": true
+        }
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/go.sum`:
+
+```sum
+github.com/santhosh-tekuri/jsonschema/v6 v6.0.1 h1:PKK9DyHxif4LZo+uQSgXNqs0jj5+xZwwfKHgph2lxBw=
+github.com/santhosh-tekuri/jsonschema/v6 v6.0.1/go.mod h1:JXeL+ps8p7/KNMjDQk3TCwPpBy0wYklyWTfbkIzdIFU=
+golang.org/x/text v0.14.0 h1:ScX5w1eTa3QqT8oi6+ziP7dTV1S2+ALU0bI+0zXKWiQ=
+golang.org/x/text v0.14.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/schemas/erc1155-schema.json`:
+
+```json
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://github.com/TreasureProject/bridging-token-registry/blob/main/schemas/erc1155-schema.json",
+    "title": "Treasure ERC1155 Bridging Registry",
+    "type": "object",
+    "properties": {
+        "tokens": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "existingToken": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "adapterAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "oftAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "batchTransferEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "name",
+                    "existingToken",
+                    "adapterAddress",
+                    "oftAddress",
+                    "batchTransferEnabled"
+                ]
+            }
+        }
+    },
+    "required": [
+        "tokens"
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/schemas/erc721-schema.json`:
+
+```json
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://github.com/TreasureProject/bridging-token-registry/blob/main/schemas/erc721-schema.json",
+    "title": "Treasure ERC721 Bridging Registry",
+    "type": "object",
+    "properties": {
+        "tokens": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "existingToken": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "adapterAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "oftAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "batchTransferEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "name",
+                    "existingToken",
+                    "adapterAddress",
+                    "oftAddress",
+                    "batchTransferEnabled"
+                ]
+            }
+        }
+    },
+    "required": [
+        "tokens"
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/schemas/tokenSchema.json`:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Treasure Bridging Registry",
+  "$id": "https://github.com/TreasureProject/bridging-token-registry/blob/main/schemas/tokenSchema.json",
+  "type": "object",
+  "properties": {
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "srcChainId": { "type": "integer" },
+          "destChainId": { "type": "integer" },
+          "srcTokenAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "destTokenAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "isNft": { "type": "boolean" },
+          "isCollateral": { "type": "boolean" },
+          "nftStandard": {
+            "type": "string",
+            "enum": ["ERC721", "ERC1155"]
+          },
+          "underlyingTokenAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "nftBatchSignature": { "type": "string" }
+        },
+        "required": [
+          "name",
+          "srcChainId",
+          "destChainId",
+          "srcTokenAddress",
+          "destTokenAddress",
+          "isNft",
+          "isCollateral"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": { "isNft": { "const": true } }
+            },
+            "then": {
+              "required": ["nftStandard"]
+            }
+          },
+          {
+            "if": {
+              "properties": { "isCollateral": { "const": true } }
+            },
+            "then": {
+              "required": ["underlyingTokenAddress"]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/schemas/erc20-schema.json`:
+
+```json
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://github.com/TreasureProject/bridging-token-registry/blob/main/schemas/erc20-schema.json",
+    "title": "Treasure ERC20 Bridging Registry",
+    "type": "object",
+    "properties": {
+        "tokens": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "existingToken": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "adapterAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    },
+                    "oftAddress": {
+                        "type": "string",
+                        "pattern": "^0x[a-fA-F0-9]{40}$"
+                    }
+                },
+                "required": [
+                    "name",
+                    "existingToken",
+                    "adapterAddress",
+                    "oftAddress"
+                ]
+            }
+        }
+    },
+    "required": [
+        "tokens"
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/README.md`:
+
+```md
+# Treasure Bridged Token Registry
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/mainnet/erc20-data.json`:
+
+```json
+{
+    "tokens": [
+        {
+            "name": "ArcaneAmber",
+            "existingToken": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+            "adapterAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+            "oftAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+        }
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/mainnet/erc1155-data.json`:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "tokens": [
+    {
+      "name": "Magic Crystal",
+      "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+      "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
+      "batchTransferEnabled": true
+    },
+    {
+      "name": "Ethereal Blade",
+      "existingToken": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "adapterAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "oftAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+      "batchTransferEnabled": false
+    },
+    {
+      "name": "Quantum Shard",
+      "existingToken": "0xE11BA2b4D45Eaed5996cd0824791E0C93114882d",
+      "adapterAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "oftAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+      "batchTransferEnabled": true
+    }
+  ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/mainnet/erc721-data.json`:
+
+```json
+{
+    "tokens": [
+        {
+            "name": "Magic Sword",
+            "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+            "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+            "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
+            "batchTransferEnabled": true
+        }
+        
+    ]
+}
+
+```
+
+`/Users/mulf/Work/bridging-token-registry/main.go`:
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/santhosh-tekuri/jsonschema/v6"
+	"os"
+)
+
+type vaildationError struct {
+	tokenType TokenType
+	err       error
+	file      string
+}
+
+type schemaType struct {
+	schemaLocation   string
+	dataFileLocation [2]string
+	compiledSchema   *jsonschema.Schema
+}
+
+type TokenType string
+
+const (
+	ERC20   TokenType = "erc20"
+	ERC721  TokenType = "erc721"
+	ERC1155 TokenType = "erc1155"
+)
+
+func main() {
+	var errors []vaildationError
+	comp := jsonschema.NewCompiler()
+
+	schemaMap := map[TokenType]*schemaType{
+		ERC20: {
+			schemaLocation:   "schemas/erc20-schema.json",
+			dataFileLocation: [2]string{"testnet/erc20-data.json", "mainnet/erc20-data.json"},
+		},
+		ERC721: {
+			schemaLocation: "schemas/erc721-schema.json",
+			dataFileLocation: [2]string{
+				"testnet/erc721-data.json",
+				"mainnet/erc721-data.json",
+			},
+		},
+		ERC1155: {
+			schemaLocation: "schemas/erc1155-schema.json",
+			dataFileLocation: [2]string{
+				"testnet/erc1155-data.json",
+				"mainnet/erc1155-data.json",
+			},
+		},
+	}
+
+	for token, schema := range schemaMap {
+
+		if _, err := os.Stat(schema.schemaLocation); os.IsNotExist(err) {
+			errors = append(errors, vaildationError{
+				tokenType: token,
+				err:       err,
+			})
+			continue
+		}
+
+		sch, err := comp.Compile(schema.schemaLocation)
+		if err != nil {
+			errors = append(errors, vaildationError{
+				tokenType: token,
+				err:       err,
+			})
+			continue
+		}
+
+		schemaMap[token].compiledSchema = sch
+
+		for _, fileLocation := range schema.dataFileLocation {
+			if _, err := os.Stat(fileLocation); os.IsNotExist(err) {
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+					file:      fileLocation,
+				})
+				continue
+			}
+
+			file, err := os.Open(fileLocation)
+			if err != nil {
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+					file:      fileLocation,
+				})
+				continue
+			}
+
+			inst, err := jsonschema.UnmarshalJSON(file)
+			if err != nil {
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+					file:      fileLocation,
+				})
+				continue
+			}
+
+			file.Close()
+
+			err = schema.compiledSchema.Validate(inst)
+			if err != nil {
+				errors = append(errors, vaildationError{
+					tokenType: token,
+					err:       err,
+					file:      fileLocation,
+				})
+				continue
+			}
+
+		}
+
+	}
+
+	if len(errors) > 0 {
+		fmt.Println("vaildation errors occured")
+		for _, err := range errors {
+			fmt.Println(fmt.Sprintf("%s: %s in file %s", err.tokenType, err.err.Error(), err.file))
+		}
+
+		os.Exit(1)
+	}
+
+	fmt.Println("validation successful")
+
+}
+
+```

@@ -1,12 +1,27 @@
 {
-    "tokens": [
-        {
-            "name": "Magic Sword",
-            "existingToken": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
-            "adapterAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
-            "oftAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
-            "batchTransferEnabled": true
-        }
-        
-    ]
+  "tokens": [
+    {
+      "name": "Legendary Heroes",
+      "srcChainId": 421613,
+      "destChainId": 5,
+      "srcTokenAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
+      "destTokenAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
+      "isNft": true,
+      "nftStandard": "ERC721",
+      "isCollateral": false,
+      "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
+    },
+    {
+      "name": "Ancient Relics",
+      "srcChainId": 5,
+      "destChainId": 80001,
+      "srcTokenAddress": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "destTokenAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+      "isNft": true,
+      "nftStandard": "ERC721",
+      "isCollateral": true,
+      "underlyingTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
+    }
+  ]
 }
