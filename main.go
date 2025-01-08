@@ -31,16 +31,16 @@ func main() {
 	// Data file locations by token type
 	dataFiles := map[TokenType][2]string{
 		ERC20: {
-			"testnet/erc20-data.json",
-			"mainnet/erc20-data.json",
+			"data/testnet/erc20.json",
+			"data/mainnet/erc20.json",
 		},
 		ERC721: {
-			"testnet/erc721-data.json",
-			"mainnet/erc721-data.json",
+			"data/testnet/erc721.json",
+			"data/mainnet/erc721.json",
 		},
 		ERC1155: {
-			"testnet/erc1155-data.json",
-			"mainnet/erc1155-data.json",
+			"data/testnet/erc1155.json",
+			"data/mainnet/erc1155.json",
 		},
 	}
 
@@ -110,5 +110,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println("All token configurations validated successfully")
+	fmt.Println("All token configurations validated successfully.")
 }
