@@ -41,7 +41,7 @@ Each token entry requires the following mandatory fields:
 
 ## Validation
 
-The repository implements automatic validation through CI/CD pipelines[1]. All token configurations must comply with the JSON schema defined in `schemas/tokenSchema.json`[1]. The validation ensures:
+The repository implements automatic validation through CI/CD pipelines. All token configurations must comply with the JSON schema defined in `schemas/tokenSchema.json`. The validation ensures:
 
 - All required fields are present
 - Addresses follow the correct format
@@ -64,16 +64,12 @@ To validate configurations locally:
 go run main.go
 ```
 
-This command will check all JSON files against the schema and report any validation errors[1].
+This command will check all JSON files against the schema and report any validation errors.
 
 ## Technical Requirements
 
-- Go 1.22.1 or higher
-- JSON Schema validation using `github.com/santhosh-tekuri/jsonschema/v6`
+- Go 1.22 or higher
 
 ## Support
 
 For questions or assistance with token registration, please reach out to your Treasure point of contact. All submissions must go through proper review channels to ensure ecosystem security and stability.
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/40858233/ae4cd89f-e486-4c57-aa23-2073ef8db4bd/paste.txt
