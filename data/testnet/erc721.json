@@ -22,6 +22,16 @@
       "isCollateral": true,
       "underlyingTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
       "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
+    },
+    {
+      "name": "WoP",
+      "srcChainId": 421614,
+      "destChainId": 978658,
+      "srcTokenAddress": "0xDAaEc7AD4e30b1388d4abfc0391c8320c3663601",
+      "destTokenAddress": "0xDAaEc7AD4e30b1388d4abfc0391c8320c3663601",
+      "isNft": true,
+      "nftStandard": "ERC721",
+      "isCollateral": false
     }
   ]
 }
