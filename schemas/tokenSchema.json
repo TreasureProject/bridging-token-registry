@@ -46,7 +46,7 @@
               "properties": { "isNft": { "const": true } }
             },
             "then": {
-              "required": ["nftStandard", "nftBatchSignature"]
+              "required": ["nftStandard"]
             }
           },
           {
