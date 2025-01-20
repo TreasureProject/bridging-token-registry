@@ -1,29 +1,6 @@
 {
   "tokens": [
     {
-      "name": "Legendary Heroes",
-      "srcChainId": 421613,
-      "destChainId": 5,
-      "srcTokenAddress": "0x5a32119C68032d4F2F8cDB072E89f12550f2B782",
-      "destTokenAddress": "0x8fC72388B128B36890057b1b4f4C9746d7157f2E",
-      "isNft": true,
-      "nftStandard": "ERC721",
-      "isCollateral": false,
-      "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
-    },
-    {
-      "name": "Ancient Relics",
-      "srcChainId": 5,
-      "destChainId": 80001,
-      "srcTokenAddress": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-      "destTokenAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
-      "isNft": true,
-      "nftStandard": "ERC721",
-      "isCollateral": true,
-      "underlyingTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
-      "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
-    },
-    {
       "name": "WoP",
       "srcChainId": 421614,
       "destChainId": 978658,
@@ -33,6 +10,17 @@
       "nftStandard": "ERC721",
       "isCollateral": true,
       "underlyingTokenAddress": "0xDAaEc7AD4e30b1388d4abfc0391c8320c3663601",
+      "nftBatchSignature": "transferRemoteBatch(uint32 destination, bytes32 recipient, uint128[] tokenIds) payable returns (bytes32[] messageIds)"
+    },
+    {
+      "name": "WoP",
+      "srcChainId": 978658,
+      "destChainId": 421614,
+      "srcTokenAddress": "0xF96a9D4b8a98E3d233E3e8e4174F8C6953e20Dec",
+      "destTokenAddress": "0xd4Cf20A9E2BA00Ac267E3090d3de073CDb871225",
+      "isNft": true,
+      "nftStandard": "ERC721",
+      "isCollateral": false,
       "nftBatchSignature": "transferRemoteBatch(uint32 destination, bytes32 recipient, uint128[] tokenIds) payable returns (bytes32[] messageIds)"
     }
   ]
