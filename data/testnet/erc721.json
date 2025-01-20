@@ -32,7 +32,8 @@
       "isNft": true,
       "nftStandard": "ERC721",
       "isCollateral": true,
-      "underlyingTokenAddress": "0xDAaEc7AD4e30b1388d4abfc0391c8320c3663601"
+      "underlyingTokenAddress": "0xDAaEc7AD4e30b1388d4abfc0391c8320c3663601",
+      "nftBatchSignature": "transferRemoteBatch(uint32 destination, bytes32 recipient, uint128[] tokenIds) payable returns (bytes32[] messageIds)"
     }
   ]
 }
