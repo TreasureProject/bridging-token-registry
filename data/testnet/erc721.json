@@ -11,6 +11,17 @@
       "isCollateral": true,
       "underlyingTokenAddress": "0xDAaEc7AD4e30b1388d4abfc0391c8320c3663601",
       "nftBatchSignature": "transferRemoteBatch(uint32 destination, bytes32 recipient, uint128[] tokenIds) payable returns (bytes32[] messageIds)"
+    },
+    {
+      "name": "Writ of Passage",
+      "srcChainId": 978658,
+      "destChainId": 421614,
+      "srcTokenAddress": "0xF96a9D4b8a98E3d233E3e8e4174F8C6953e20Dec",
+      "destTokenAddress": "0xd4Cf20A9E2BA00Ac267E3090d3de073CDb871225",
+      "isNft": true,
+      "nftStandard": "ERC721",
+      "isCollateral": false,
+      "nftBatchSignature": "transferRemoteBatch(uint32 destination, bytes32 recipient, uint128[] tokenIds) payable returns (bytes32[] messageIds)"
     }
   ]
 }
