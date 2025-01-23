@@ -1,21 +1,23 @@
 {
   "tokens": [
     {
-      "name": "Magic Gold",
-      "srcChainId": 5,
-      "destChainId": 80001,
-      "srcTokenAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
-      "destTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "method": "hyperlane",
+      "name": "Smol",
+      "srcChainId": 421614,
+      "srcTokenAddress": "0x608238d2F754FA7f4A717d283F135D0cE50C493F",
+      "destChainId": 978658,
+      "destTokenAddress": "0xab72295bc9C74DEe0A30231C486b2D4A2ae0457e",
       "isNft": false,
       "isCollateral": true,
-      "underlyingTokenAddress": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+      "underlyingTokenAddress": "0x82F3f3f5cD3e28B37eFbCFa985b93E82Ea6bE2a3"
     },
     {
-      "name": "Mystic Gems",
-      "srcChainId": 80001,
-      "destChainId": 421613,
-      "srcTokenAddress": "0xE11BA2b4D45Eaed5996cd0824791E0C93114882d",
-      "destTokenAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
+      "method": "hyperlane",
+      "name": "Smol",
+      "srcChainId": 978658,
+      "srcTokenAddress": "0xab72295bc9C74DEe0A30231C486b2D4A2ae0457e",
+      "destChainId": 421614,
+      "destTokenAddress": "0x608238d2F754FA7f4A717d283F135D0cE50C493F",
       "isNft": false,
       "isCollateral": false
     }

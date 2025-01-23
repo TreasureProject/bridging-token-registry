@@ -8,6 +8,10 @@
       "items": {
         "type": "object",
         "properties": {
+          "method": {
+            "type": "string",
+            "enum": ["zksync", "hyperlane"]
+          },
           "name": { "type": "string" },
           "srcChainId": { "type": "integer" },
           "destChainId": { "type": "integer" },
@@ -32,6 +36,7 @@
           "nftBatchSignature": { "type": "string" }
         },
         "required": [
+          "method",
           "name",
           "srcChainId",
           "destChainId",

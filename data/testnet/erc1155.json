@@ -1,6 +1,7 @@
 {
   "tokens": [
     {
+      "method": "hyperlane",
       "name": "Magic Items",
       "srcChainId": 5,
       "destChainId": 420,
@@ -13,6 +14,7 @@
       "nftBatchSignature": "send((uint32,bytes32,uint256,uint256,bytes,bytes,bytes),(uint256,uint256),address)"
     },
     {
+      "method": "hyperlane",
       "name": "Battle Equipment",
       "srcChainId": 80001,
       "destChainId": 421613,
