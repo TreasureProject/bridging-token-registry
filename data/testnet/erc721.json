@@ -1,6 +1,7 @@
 {
   "tokens": [
     {
+      "method": "hyperlane",
       "name": "Writ of Passage",
       "srcChainId": 421614,
       "destChainId": 978658,
@@ -13,6 +14,7 @@
       "nftBatchSignature": "transferRemoteBatch(uint32 destination, bytes32 recipient, uint128[] tokenIds) payable returns (bytes32[] messageIds)"
     },
     {
+      "method": "hyperlane",
       "name": "Writ of Passage",
       "srcChainId": 978658,
       "destChainId": 421614,
