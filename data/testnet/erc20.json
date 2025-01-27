@@ -14,12 +14,13 @@
     {
       "method": "hyperlane",
       "name": "Smol",
-      "srcChainId": 978658,
-      "srcTokenAddress": "0xab72295bc9C74DEe0A30231C486b2D4A2ae0457e",
-      "destChainId": 421614,
-      "destTokenAddress": "0x608238d2F754FA7f4A717d283F135D0cE50C493F",
+      "srcChainId": 421614,
+      "srcTokenAddress": "0x608238d2F754FA7f4A717d283F135D0cE50C493F",
+      "destChainId": 11155111,
+      "destTokenAddress": "0xab72295bc9C74DEe0A30231C486b2D4A2ae0457e",
       "isNft": false,
-      "isCollateral": false
+      "isCollateral": true,
+      "underlyingTokenAddress": "0x82F3f3f5cD3e28B37eFbCFa985b93E82Ea6bE2a3"
     }
   ]
 }
