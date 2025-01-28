@@ -1,25 +1,15 @@
 {
   "tokens": [
     {
-      "method": "zksync",
-      "name": "Super Gold",
-      "srcChainId": 5,
-      "destChainId": 80001,
-      "srcTokenAddress": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
-      "destTokenAddress": "0x3D9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+      "method": "hyperlane",
+      "name": "Smol",
+      "srcChainId": 42161,
+      "srcTokenAddress": "0xA4Bbac7eD5BdA8Ec71a1aF5ee84d4c5a737bD875",
+      "destChainId": 1,
+      "destTokenAddress": "0x53ccE6d10e43d1B3D11872Ad22eC2aCd8d2537B8",
       "isNft": false,
       "isCollateral": true,
-      "underlyingTokenAddress": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
-    },
-    {
-      "method": "zksync",
-      "name": "Mystic Gems",
-      "srcChainId": 80001,
-      "destChainId": 421613,
-      "srcTokenAddress": "0xE11BA2b4D45Eaed5996cd0824791E0C93114882d",
-      "destTokenAddress": "0x1dD8E8BD0e5c7759B006C2f7985233B3887E57e1",
-      "isNft": false,
-      "isCollateral": false
+      "underlyingTokenAddress": "0x9E64D3b9e8eC387a9a58CED80b71Ed815f8D82B5"
     }
   ]
 }
