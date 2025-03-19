@@ -16,7 +16,7 @@
       "name": "Smol",
       "srcChainId": 421614,
       "srcTokenAddress": "0x608238d2F754FA7f4A717d283F135D0cE50C493F",
-      "destChainId": 11155111,
+      "destChainId": 978658,
       "destTokenAddress": "0xab72295bc9C74DEe0A30231C486b2D4A2ae0457e",
       "isNft": false,
       "isCollateral": true,
@@ -24,3 +24,4 @@
     }
   ]
 }
+
